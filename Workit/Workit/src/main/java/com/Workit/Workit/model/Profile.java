@@ -1,6 +1,19 @@
 package com.Workit.Workit.model;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Profile {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+    @OneToOne
+    @JoinColumn(name = "username",referencedColumnName = "username", unique = true)
+    private Users users;
     private String bio;
     private String Organisation;
     private String Designation;

@@ -1,12 +1,23 @@
 package com.Workit.Workit.model;
 
-public class user {
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "Users")
+public class Users {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String email;
     private String password;
+    @JsonProperty("phoneNumber")
     private long phoneNumber;
+    @Column(unique = true)
     private String username;
 
-    public user() {
+
+    public Users() {
     }
 
     public String getEmail() {
@@ -39,5 +50,13 @@ public class user {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

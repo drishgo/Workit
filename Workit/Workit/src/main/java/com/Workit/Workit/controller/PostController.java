@@ -24,6 +24,7 @@ public class PostController {
     @GetMapping("/searchPosts/{text}")
     @CrossOrigin
     public List<Post> searchPost(@PathVariable("text") String text){
+
         return searchRepo.findByText(text);
     }
 

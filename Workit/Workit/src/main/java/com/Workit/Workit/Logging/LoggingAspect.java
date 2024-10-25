@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Aspect
-
+@Component
 public class LoggingAspect {
     public static void logit(){
         LOGGER.info("getAllPost Called");
