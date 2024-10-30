@@ -1,5 +1,6 @@
 package com.Workit.Workit.controller;
 
+import com.Workit.Workit.Service.PrimaryUserDetailsService;
 import com.Workit.Workit.Service.UserService;
 import com.Workit.Workit.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    PrimaryUserDetailsService primaryUserDetailsService;
 
     @PostMapping("/Register")
     public ResponseEntity<Users> registerUser(@RequestBody Users users){
@@ -37,7 +40,7 @@ public class UserController {
                 .orElseGet(()->ResponseEntity.notFound().build());
    }
 
-   @DeleteMapping("/{username}")
+   @DeleteMapping("/delete/{username}")
     public void deleteUser(@PathVariable("username")String username){
         userService.deleteUser(
                 userService.findUsername(username).map(
@@ -46,6 +49,10 @@ public class UserController {
                     return -1;
                 })
         );
+    }
+    @PatchMapping("/update/Email")
+    public void updateEmail(Users users,@RequestBody String email){
+        userService.updateUserEmail(users,email);
     }
 
 
